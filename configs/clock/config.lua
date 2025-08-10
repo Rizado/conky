@@ -100,7 +100,39 @@ config = {
             v_align = "b",
             colour = { { 1, 0xFFFFFF, 1 } },
         },
-
+        {
+            text = "${time %A}",
+            font_name = "Ubuntu",
+            font_size = 20,
+            bold = true,
+            x = 300,
+            y = 15,
+            h_align = "c",
+            v_align = "t",
+            colour = { { 1, 0xFFFFFF, 1 } },
+        },
+        {
+            text = "${time %-d %B}",
+            font_name = "Ubuntu",
+            font_size = 20,
+            bold = true,
+            x = 300,
+            y = 50,
+            h_align = "c",
+            v_align = "t",
+            colour = { { 1, 0xFFFFFF, 1 } },
+        },
+        {
+            text = "${time %Y}",
+            font_name = "Ubuntu",
+            font_size = 20,
+            bold = true,
+            x = 300,
+            y = 85,
+            h_align = "c",
+            v_align = "t",
+            colour = { { 1, 0xFFFFFF, 1 } },
+        },
     }
 }
 
