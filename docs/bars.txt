@@ -1,0 +1,85 @@
+--[[ BARGRAPH WIDGET
+	v2.1 by wlourf (07 Jan. 2011)
+	this widget draws a bargraph with different effects
+	http://u-scripts.blogspot.com/2010/07/bargraph-widget.html
+
+To call the script in a conky, use, before TEXT
+	lua_load /path/to/the/script/bargraph.lua
+	lua_draw_hook_pre main_rings
+and add one line (blank or not) after TEXT
+
+
+Parameters are :
+3 parameters are mandatory
+name	- the name of the conky variable to display, for example for {$cpu cpu0}, just write name="cpu"
+arg		- the argument of the above variable, for example for {$cpu cpu0}, just write arg="cpu0"
+		  arg can be a numerical value if name=""
+max		- the maximum value the above variable can reach, for example, for {$cpu cpu0}, just write max=100
+
+Optional parameters:
+x,y		- coordinates of the starting point of the bar, default = middle of the conky window
+cap		- end of cap line, possible values are r,b,s (for round, butt, square), default="b"
+		  http://www.cairographics.org/samples/set_line_cap/
+angle	- angle of rotation of the bar in degrees, default = 0 (i.e. a vertical bar)
+		  set to 90 for a horizontal bar
+skew_x	- skew bar around x axis, default = 0
+skew_y	- skew bar around y axis, default = 0
+blocks  - number of blocks to display for a bar (values >0) , default= 10
+height	- height of a block, default=10 pixels
+width	- width of a block, default=20 pixels
+space	- space between 2 blocks, default=2 pixels
+angle_bar	- this angle is used to draw a bar in a circular way (ok, this is no more a bar!) default=0
+radius		- for circular bars, internal radius, default=0
+			  with radius, parameter width has no more effect.
+
+Colors below are defined into braces {color in hexadecimal, alpha}
+fg_colour	- color of a block ON, default= {0x00FF00,1}
+bg_colour	- color of a block OFF, default = {0x00FF00,0.5}
+alarm		- threshold, values after this threshold will use alarm_colour color , default=max
+alarm_colour - color of a block greater than alarm, default=fg_colour
+smooth		- (true or false), create a gradient from fg_colour to bg_colour, default=false
+mid_colour	- colors to add to gradient, with this syntax {position into the gradient (0 to1), color hexa, alpha}
+			  for example, this table {{0.25,0xff0000,1},{0.5,0x00ff00,1},{0.75,0x0000ff,1}} will add
+			  3 colors to gradient created by fg_colour and alarm_colour, default=no mid_colour
+led_effect	- add LED effects to each block, default=no led_effect
+			  if smooth=true, led_effect is not used
+			  possible values : "r","a","e" for radial, parallel, perpendicular to the bar (just try!)
+			  led_effect has to be used with these colors :
+fg_led		- middle color of a block ON, default = fg_colour
+bg_led		- middle color of a block OFF, default = bg_colour
+alarm_led	- middle color of a block > ALARM,  default = alarm_colour
+
+reflection parameters, not available for circular bars
+reflection_alpha    - add a reflection effect (values from 0 to 1) default = 0 = no reflection
+                      other values = starting opacity
+reflection_scale    - scale of the reflection (default = 1 = height of text)
+reflection_length   - length of reflection, define where the opacity will be set to zero
+					  values from 0 to 1, default =1
+reflection			- position of reflection, relative to a vertical bar, default="b"
+					  possible values are : "b","t","l","r" for bottom, top, left, right
+draw_me     - if set to false, text is not drawn (default = true or 1)
+              it can be used with a conky string, if the string returns 1, the text is drawn :
+              example : "${if_empty ${wireless_essid wlan0}}${else}1$endif",
+
+v1.0 (10 Feb. 2010) original release
+v1.1 (13 Feb. 2010) numeric values can be passed instead conky stats with parameters name="", arg = numeric_value
+v1.2 (28 Feb. 2010) just renamed the widget to bargraph
+v1.3 (03 Mar. 2010) added parameters radius & angle_bar to draw the bar in a circular way
+v2.0 (12 Jul. 2010) rewrite script + add reflection effects and parameters are now set into tables
+v2.1 (07 Jan. 2011) Add draw_me parameter and correct memory leaks, thanks to "Creamy Goodness"
+
+--      This program is free software; you can redistribute it and/or modify
+--      it under the terms of the GNU General Public License as published by
+--      the Free Software Foundation version 3 (GPLv3)
+--
+--      This program is distributed in the hope that it will be useful,
+--      but WITHOUT ANY WARRANTY; without even the implied warranty of
+--      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--      GNU General Public License for more details.
+--
+--      You should have received a copy of the GNU General Public License
+--      along with this program; if not, write to the Free Software
+--      Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+--      MA 02110-1301, USA.
+
+]]

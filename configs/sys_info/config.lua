@@ -1,0 +1,127 @@
+-- config.lua
+-- conky system info widget
+-- by @rizado
+-- 5 August 2025
+
+config = {
+    boxes = {
+        {
+            type = "background",
+            x = 0,
+            y = 0,
+            w = 400,
+            h = 240,
+            corners = { 8, 8, 8, 8 },
+            rotation = 0,
+            skew_x = 0,
+            skew_y = 0,
+            draw_me = true,
+            colour = { { 1, 0x000000, 0.5 } },
+        },
+        {
+            type = "background",
+            x = 10,
+            y = 105,
+            w = 380,
+            h = 2,
+            corners = { 0, 0, 0, 0 },
+            rotation = 0,
+            skew_x = 0,
+            skew_y = 0,
+            draw_me = true,
+            colour = { { 1, 0xc0c000, 1 } },
+        },
+        {
+            type = "background",
+            x = 10,
+            y = 170,
+            w = 380,
+            h = 2,
+            corners = { 0, 0, 0, 0 },
+            rotation = 0,
+            skew_x = 0,
+            skew_y = 0,
+            draw_me = true,
+            colour = { { 1, 0xc0c000, 1 } },
+        },
+    },
+    bars = {
+    },
+    rings = {
+    },
+    texts = {
+        {
+            text = "${nodename}",
+            font_name = "Ubuntu",
+            font_size = 20,
+            bold = true,
+            x = 200,
+            y = 15,
+            h_align = "c",
+            v_align = "t",
+            colour = { { 1, 0xFFFFFF, 1 } },   
+        },
+        {
+            text = "${sysname}, kernel ${kernel} ${machine}",
+            font_name = "Ubuntu",
+            font_size = 14,
+            x = 10,
+            y = 65,
+            h_align = "l",
+            v_align = "b",
+            colour = { { 1, 0xFFFFFF, 1 } },   
+        },
+        {
+            text = "Uptime: ${uptime}",
+            font_name = "Ubuntu",
+            font_size = 14,
+            x = 10,
+            y = 90,
+            h_align = "l",
+            v_align = "b",
+            colour = { { 1, 0xFFFFFF, 1 } },   
+        },
+        {
+            text = "Frequency (in MHz): ${freq}",
+            font_name = "Ubuntu",
+            font_size = 14,
+            x = 10,
+            y = 130,
+            h_align = "l",
+            v_align = "b",
+            colour = { { 1, 0xFFFFFF, 1 } },   
+        },
+        {
+            text = "Frequency (in GHz): ${freq_g}",
+            font_name = "Ubuntu",
+            font_size = 14,
+            x = 10,
+            y = 155,
+            h_align = "l",
+            v_align = "b",
+            colour = { { 1, 0xFFFFFF, 1 } },   
+        },
+        {
+            text = "Network down / up: ${downspeed enp3s0} / ${upspeed enp3s0}",
+            font_name = "Ubuntu",
+            font_size = 14,
+            x = 10,
+            y = 195,
+            h_align = "l",
+            v_align = "b",
+            colour = { { 1, 0xFFFFFF, 1 } },   
+        },
+        {
+            text = "Total down / up: ${totaldown enp3s0} / ${totalup enp3s0}",
+            font_name = "Ubuntu",
+            font_size = 14,
+            x = 10,
+            y = 220,
+            h_align = "l",
+            v_align = "b",
+            colour = { { 1, 0xFFFFFF, 1 } },   
+        },
+    }
+}
+
+return config

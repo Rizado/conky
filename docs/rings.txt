@@ -1,0 +1,87 @@
+--[[ RINGS with SECTORS widget
+	v1.1 by wlourf (07 Jan. 2011)
+	this widget draws a ring with differents effects 
+	http://u-scripts.blogspot.com/2010/08/rings-sectors-widgets.html
+	
+To call the script in a conky, use, before TEXT
+	lua_load /path/to/the/script/rings.lua
+	lua_draw_hook_pre main_rings
+and add one line (blank or not) after TEXT
+
+
+Parameters are :
+3 parameters are mandatory
+name		- the name of the conky variable to display,
+			  for example for {$cpu cpu0}, just write name="cpu"
+arg			- the argument of the above variable,
+			  for example for {$cpu cpu0}, just write arg="cpu0"
+		  	  arg can be a numerical value if name=""
+max			- the maximum value the above variable can reach,
+			  for example for {$cpu cpu0}, just write max=100
+	
+Optional parameters:
+xc,yc		- coordinates of the center of the ring,
+			  default = middle of the conky window
+radius		- external radius of the ring, in pixels,
+			  default = quarter of the width of the conky window
+thickness	- thickness of the ring, in pixels, default = 10 pixels
+start_angle	- starting angle of the ring, in degrees, value can be negative,
+			  default = 0 degree
+end_angle	- ending angle of the ring, in degrees,
+			  value must be greater than start_angle, default = 360 degrees
+sectors		- number of sectors in the ring, default = 10
+gap_sectors - gap between two sectors, in pixels, default = 1 pixel
+cap			- the way to close a sector, available values are
+				"p" for parallel , default value 
+				"r" for radial (follow the radius)
+inverse_arc	- if set to true, arc will be anticlockwise, default=false
+border_size	- size of the border, in pixels, default = 0 pixel i.e. no border
+fill_sector	- if set to true, each sector will be completely filled,
+			  default=false, this parameter is inoperate if sectors=1
+background	- if set to false, background will not be drawn, default=true
+foreground	- if set to false, foreground will not be drawn, default=true
+
+Colours tables below are defined into braces :
+{position in the gradient (0 to 1), colour in hexadecimal, alpha (0 to 1)}
+example for a single colour table : 
+{{0,0xFFAA00,1}} position parameter doesn't matter
+example for a two-colours table : 
+{{0,0xFFAA00,1},{1,0x00AA00,1}} or {{0.5,0xFFAA00,1},{1,0x00AA00,1}}
+example for a three-colours table : 
+{{0,0xFFAA00,1},{0.5,0xFF0000,1},{1,0x00AA00,1}}
+
+bg_colour1	- colour table for background,
+			  default = {{0,0x00ffff,0.1},{0.5,0x00FFFF,0.5},{1,0x00FFFF,0.1}}
+fg_colour1	- colour table for foreground,
+			  default = {{0,0x00FF00,0.1},{0.5,0x00FF00,1},{1,0x00FF00,0.1}}
+bd_colour1	- colour table for border,
+			  default = {{0,0xFFFF00,0.5},{0.5,0xFFFF00,1},{1,0xFFFF00,0.5}}			  
+
+Seconds tables for radials gradients :
+bg_colour2	- second colour table for background, default = no second colour
+fg_colour2	- second colour table for foreground, default = no second colour
+bd_colour2	- second colour table for border, default = no second colour
+
+draw_me     - if set to false, text is not drawn (default = true or 1)
+              it can be used with a conky string, if the string returns 1, the text is drawn :
+              example : "${if_empty ${wireless_essid wlan0}}${else}1$endif",
+
+v1.0 (08 Aug. 2010) original release
+v1.1 (07 Jan. 2011) Add draw_me parameter and correct memory leaks, thanks to "Creamy Goodness"
+                    text is parsed inside the function, not in the array of settings
+
+--      This program is free software; you can redistribute it and/or modify
+--      it under the terms of the GNU General Public License as published by
+--      the Free Software Foundation version 3 (GPLv3)
+--     
+--      This program is distributed in the hope that it will be useful,
+--      but WITHOUT ANY WARRANTY; without even the implied warranty of
+--      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--      GNU General Public License for more details.
+--     
+--      You should have received a copy of the GNU General Public License
+--      along with this program; if not, write to the Free Software
+--      Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+--      MA 02110-1301, USA.		
+
+]]
