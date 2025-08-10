@@ -8,3 +8,5 @@ But there is many changes:
 3. Code and data are separated. This is main. You don't need to edit file with code for change options. Use the same file with code for all instances of Conky.
 4. Count of create/destroy canvas is reduced.
 5. Some functions were rewritten completely.
+
+![Screenshot of Conky](screenshot.png)
