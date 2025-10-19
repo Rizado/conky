@@ -585,7 +585,7 @@ function draw_single_text(t)
     if t.h_align == "c" then
         mx = -te.width / 2 - te.x_bearing
     elseif t.h_align == "r" then
-        mx = -te.width
+        mx = -te.width - te.x_bearing
     end
     if t.v_align == "m" then
         my = -te.height / 2 - te.y_bearing
