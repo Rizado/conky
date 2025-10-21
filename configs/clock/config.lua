@@ -11,13 +11,13 @@ config = {
             y = 0,
             w = 400,
             h = 240,
-            centre_x = true,
+            centre_x = false,
             corners = { 8, 8, 8, 8 },
             rotation = 0,
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0x000000, 0.5 } },
+            color = { { 1, 0x000000, 0.5 } },
         },
     },
     bars = {
@@ -40,9 +40,9 @@ config = {
             background = true,
             foreground = true,
             border_size = 1,
-            bg_colour1 = { { 0, 0x333333, 0.3 }, { 1, 0x333333, 0.3 } },
-            fg_colour1 = { { 0, 0x00FF00, 0.8 }, { 1, 0x00FF00, 0.8 } },
-            bd_colour1 = { { 0, 0x00FF00, 0.5 }, { 1, 0x00FF00, 0.5 } },
+            bg_color1 = { { 0, 0x333333, 0.3 }, { 1, 0x333333, 0.3 } },
+            fg_color1 = { { 0, 0x00FF00, 0.8 }, { 1, 0x00FF00, 0.8 } },
+            bd_color1 = { { 0, 0x00FF00, 0.5 }, { 1, 0x00FF00, 0.5 } },
         },
         {
             name = "time",
@@ -57,8 +57,8 @@ config = {
             sectors = 60,
             gap_sectors = 2,
             fill_sector = true,
-            bg_colour1 = { { 0, 0x222222, 0.2 }, { 1, 0x222222, 0.2 } },
-            fg_colour1 = { { 0, 0x00AAFF, 0.7 }, { 1, 0x00AAFF, 0.7 } },
+            bg_color1 = { { 0, 0x222222, 0.2 }, { 1, 0x222222, 0.2 } },
+            fg_color1 = { { 0, 0x00AAFF, 0.7 }, { 1, 0x00AAFF, 0.7 } },
         },
         {
             name = "time",
@@ -73,8 +73,8 @@ config = {
             sectors = 60,
             gap_sectors = 2,
             fill_sector = true,
-            bg_colour1 = { { 0, 0x111111, 0.1 }, { 1, 0x111111, 0.1 } },
-            fg_colour1 = { { 0, 0xFF0000, 0.9 }, { 1, 0xFF0000, 0.9 } },
+            bg_color1 = { { 0, 0x111111, 0.1 }, { 1, 0x111111, 0.1 } },
+            fg_color1 = { { 0, 0xFF0000, 0.9 }, { 1, 0xFF0000, 0.9 } },
         },
     },
     texts = {
@@ -87,7 +87,7 @@ config = {
             y = 120,
             h_align = "r",
             v_align = "m",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "${time %S}",
@@ -98,7 +98,7 @@ config = {
             y = 115,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "${time %A}",
@@ -109,7 +109,7 @@ config = {
             y = 15,
             h_align = "c",
             v_align = "t",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "${time %-d %B}",
@@ -120,7 +120,7 @@ config = {
             y = 50,
             h_align = "c",
             v_align = "t",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "${time %Y}",
@@ -131,7 +131,7 @@ config = {
             y = 85,
             h_align = "c",
             v_align = "t",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
     }
 }

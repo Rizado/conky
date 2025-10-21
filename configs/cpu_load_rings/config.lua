@@ -11,13 +11,13 @@ config = {
             y = 0,
             w = 740,
             h = 240,
-            centre_x = true,
+            centre_x = false,
             corners = { 8, 8, 8, 8 },
             rotation = 0,
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0x000000, 0.5 } },
+            color = { { 1, 0x000000, 0.5 } },
         },
     },
     bars = {
@@ -34,8 +34,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -49,8 +49,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -64,8 +64,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -79,8 +79,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -94,8 +94,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -109,8 +109,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -124,8 +124,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -139,8 +139,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -154,8 +154,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -169,8 +169,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -184,8 +184,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -199,8 +199,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
     },
@@ -213,7 +213,7 @@ config = {
             h_align = "c",
             x = 70,
             y = 50,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu1}%",
@@ -223,7 +223,7 @@ config = {
             h_align = "c",
             x = 70,
             y = 65,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -234,7 +234,7 @@ config = {
             h_align = "c",
             x = 190,
             y = 50,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu2}%",
@@ -244,7 +244,7 @@ config = {
             h_align = "c",
             x = 190,
             y = 65,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -255,7 +255,7 @@ config = {
             h_align = "c",
             x = 310,
             y = 50,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu3}%",
@@ -265,7 +265,7 @@ config = {
             h_align = "c",
             x = 310,
             y = 65,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -276,7 +276,7 @@ config = {
             h_align = "c",
             x = 430,
             y = 50,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu4}%",
@@ -286,7 +286,7 @@ config = {
             h_align = "c",
             x = 430,
             y = 65,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -297,7 +297,7 @@ config = {
             h_align = "c",
             x = 550,
             y = 50,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu5}%",
@@ -307,7 +307,7 @@ config = {
             h_align = "c",
             x = 550,
             y = 65,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -318,7 +318,7 @@ config = {
             h_align = "c",
             x = 670,
             y = 50,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu6}%",
@@ -328,7 +328,7 @@ config = {
             h_align = "c",
             x = 670,
             y = 65,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -339,7 +339,7 @@ config = {
             h_align = "c",
             x = 70,
             y = 170,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu7}%",
@@ -349,7 +349,7 @@ config = {
             h_align = "c",
             x = 70,
             y = 185,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -360,7 +360,7 @@ config = {
             h_align = "c",
             x = 190,
             y = 170,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu8}%",
@@ -370,7 +370,7 @@ config = {
             h_align = "c",
             x = 190,
             y = 185,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -381,7 +381,7 @@ config = {
             h_align = "c",
             x = 310,
             y = 170,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu9}%",
@@ -391,7 +391,7 @@ config = {
             h_align = "c",
             x = 310,
             y = 185,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -402,7 +402,7 @@ config = {
             h_align = "c",
             x = 430,
             y = 170,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu10}%",
@@ -412,7 +412,7 @@ config = {
             h_align = "c",
             x = 430,
             y = 185,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -423,7 +423,7 @@ config = {
             h_align = "c",
             x = 550,
             y = 170,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu11}%",
@@ -433,7 +433,7 @@ config = {
             h_align = "c",
             x = 550,
             y = 185,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
 
         {
@@ -444,7 +444,7 @@ config = {
             h_align = "c",
             x = 670,
             y = 170,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
         {
             text = "${cpu cpu12}%",
@@ -454,7 +454,7 @@ config = {
             h_align = "c",
             x = 670,
             y = 185,
-            colour = { { 0, 0xFFFFFF, 1 } },
+            color = { { 0, 0xFFFFFF, 1 } },
         },
     }
 }

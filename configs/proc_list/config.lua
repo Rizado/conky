@@ -16,7 +16,7 @@ config = {
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0x000000, 0.5 } },
+            color = { { 1, 0x000000, 0.5 } },
         },
     },
     bars = {
@@ -33,7 +33,7 @@ config = {
             y = 15,
             h_align = "c",
             v_align = "t",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
 
         {
@@ -45,7 +45,7 @@ config = {
             y = 60,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "1:  ${top name 1}",
@@ -56,7 +56,7 @@ config = {
             y = 80,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFF0000, 1 } },
+            color = { { 1, 0xFF0000, 1 } },
         },
         {
             text = "2:  ${top name 2}",
@@ -67,7 +67,7 @@ config = {
             y = 100,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "3:  ${top name 3}",
@@ -78,7 +78,7 @@ config = {
             y = 120,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "4:  ${top name 4}",
@@ -89,7 +89,7 @@ config = {
             y = 140,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "5:  ${top name 5}",
@@ -100,7 +100,7 @@ config = {
             y = 160,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "6:  ${top name 6}",
@@ -111,7 +111,7 @@ config = {
             y = 180,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "7:  ${top name 7}",
@@ -122,7 +122,7 @@ config = {
             y = 200,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "8:  ${top name 8}",
@@ -133,7 +133,7 @@ config = {
             y = 220,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
 
         {
@@ -145,7 +145,7 @@ config = {
             y = 60,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "${top pid 1}",
@@ -156,7 +156,7 @@ config = {
             y = 80,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFF0000, 1 } },
+            color = { { 1, 0xFF0000, 1 } },
         },
         {
             text = "${top pid 2}",
@@ -167,7 +167,7 @@ config = {
             y = 100,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "${top pid 3}",
@@ -178,7 +178,7 @@ config = {
             y = 120,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "${top pid 4}",
@@ -189,7 +189,7 @@ config = {
             y = 140,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top pid 5}",
@@ -200,7 +200,7 @@ config = {
             y = 160,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top pid 6}",
@@ -211,7 +211,7 @@ config = {
             y = 180,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top pid 7}",
@@ -222,7 +222,7 @@ config = {
             y = 200,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top pid 8}",
@@ -233,7 +233,7 @@ config = {
             y = 220,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
 
         {
@@ -245,7 +245,7 @@ config = {
             y = 60,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "${top cpu 1} %",
@@ -256,7 +256,7 @@ config = {
             y = 80,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFF0000, 1 } },
+            color = { { 1, 0xFF0000, 1 } },
         },
         {
             text = "${top cpu 2} %",
@@ -267,7 +267,7 @@ config = {
             y = 100,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "${top cpu 3} %",
@@ -278,7 +278,7 @@ config = {
             y = 120,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "${top cpu 4} %",
@@ -289,7 +289,7 @@ config = {
             y = 140,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top cpu 5} %",
@@ -300,7 +300,7 @@ config = {
             y = 160,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top cpu 6} %",
@@ -311,7 +311,7 @@ config = {
             y = 180,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top cpu 7} %",
@@ -322,7 +322,7 @@ config = {
             y = 200,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top cpu 8} %",
@@ -333,7 +333,7 @@ config = {
             y = 220,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
 
         {
@@ -345,7 +345,7 @@ config = {
             y = 60,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
         {
             text = "${top mem 1} %",
@@ -356,7 +356,7 @@ config = {
             y = 80,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFF0000, 1 } },
+            color = { { 1, 0xFF0000, 1 } },
         },
         {
             text = "${top mem 2} %",
@@ -367,7 +367,7 @@ config = {
             y = 100,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "${top mem 3} %",
@@ -378,7 +378,7 @@ config = {
             y = 120,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0xFFFF00, 1 } },
+            color = { { 1, 0xFFFF00, 1 } },
         },
         {
             text = "${top mem 4} %",
@@ -389,7 +389,7 @@ config = {
             y = 140,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top mem 5} %",
@@ -400,7 +400,7 @@ config = {
             y = 160,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top mem 6} %",
@@ -411,7 +411,7 @@ config = {
             y = 180,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top mem 7} %",
@@ -422,7 +422,7 @@ config = {
             y = 200,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
         {
             text = "${top mem 8} %",
@@ -433,7 +433,7 @@ config = {
             y = 220,
             h_align = "r",
             v_align = "b",
-            colour = { { 1, 0x00CC00, 1 } },
+            color = { { 1, 0x00CC00, 1 } },
         },
     }
 }

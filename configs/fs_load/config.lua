@@ -11,13 +11,13 @@ config = {
             y = 0,
             w = 400,
             h = 240,
-            centre_x = true,
+            centre_x = false,
             corners = { 8, 8, 8, 8 },
             rotation = 0,
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0x000000, 0.5 } },
+            color = { { 1, 0x000000, 0.5 } },
         },
     },
     bars = {
@@ -34,8 +34,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -49,8 +49,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
         {
@@ -64,8 +64,8 @@ config = {
             sectors = 50,
             start_angle = -150,
             end_angle = 150,
-            bg_colour1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
-            fg_colour1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
+            bg_color1 = { { 0, 0x00ff00, 0.15 }, { 1, 0x00ff00, 0.15 } },
+            fg_color1 = { { 0, 0x00ff00, 1 }, { 1, 0x00ff00, 1 } },
             fill_sector = true,
         },
     },
@@ -79,7 +79,7 @@ config = {
             y = 15,
             h_align = "c",
             v_align = "t",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "${fs_used_perc /}%",
@@ -89,7 +89,7 @@ config = {
             y = 100,
             h_align = "c",
             v_align = "m",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "${fs_used_perc /home}%",
@@ -99,7 +99,7 @@ config = {
             y = 100,
             h_align = "c",
             v_align = "m",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "${fs_used_perc /mnt/media}%",
@@ -109,7 +109,7 @@ config = {
             y = 100,
             h_align = "c",
             v_align = "m",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "/",
@@ -119,7 +119,7 @@ config = {
             y = 170,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "/home",
@@ -129,7 +129,7 @@ config = {
             y = 170,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "/mnt/media",
@@ -139,7 +139,7 @@ config = {
             y = 170,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Used: ${fs_used /}",
@@ -149,7 +149,7 @@ config = {
             y = 195,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Used: ${fs_used /home}",
@@ -159,7 +159,7 @@ config = {
             y = 195,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Used: ${fs_used /mnt/media}",
@@ -169,7 +169,7 @@ config = {
             y = 195,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Size: ${fs_size /}",
@@ -179,7 +179,7 @@ config = {
             y = 220,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Size: ${fs_size /home}",
@@ -189,7 +189,7 @@ config = {
             y = 220,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         }, 
         {
             text = "Size: ${fs_size /mnt/media}",
@@ -199,7 +199,7 @@ config = {
             y = 220,
             h_align = "c",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
     }
 }

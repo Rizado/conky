@@ -4,7 +4,7 @@ _G.root_path = "../.."
 package.path = package.path .. ";" .. root_path .. "/?.lua;" .. root_path .. "/?/init.lua"
 
 local widgets = require("widgets.common")
-local globe = require("widgets.globe")
+local calendar = require("widgets.calendar")
 
 config = require("config")
 
@@ -15,11 +15,7 @@ conky_main = function()
     cairo_save(cr)
 
     widgets.conky_main(config, cr)
-    globe.conky_globe_main(config, cr, widgets)
-
-    cairo_restore(cr)
-
-    cairo_destroy(cr)
-    cairo_surface_destroy(cs)
-    cr = nil
+    if config.calendar then
+        calendar.conky_calendar_main(config, cr)
+    end
 end

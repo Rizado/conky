@@ -16,7 +16,7 @@ config = {
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0x000000, 0.5 } },
+            color = { { 1, 0x000000, 0.5 } },
         },
         {
             type = "image",
@@ -43,7 +43,7 @@ config = {
             y = 15,
             h_align = "c",
             v_align = "t",
-            colour = { { 1, 0xFFFFFF, 1 } },
+            color = { { 1, 0xFFFFFF, 1 } },
         },
     },
     globes = {

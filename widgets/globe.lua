@@ -1,8 +1,8 @@
--- common.lua
--- conky widgets common
+-- globe.lua
+-- conky widgets globe
 -- by @rizado
 -- original code by @wim66, thanks
--- 9 August 2025    
+-- 20 October 2025    
 
 require("cairo")
 require("widgets.common")
@@ -61,28 +61,23 @@ local function project(lat, lon, config)
     return x, y_tilt, z_tilt
 end
 
-local function draw_single_globe(config)
+local function draw_single_globe(config, cr)
     cairo_save(cr)
-    -- Draw a shadow behind the globe
-    cairo_set_source_rgba(cr, 0, 0, 0, config.globe_shadow) -- Shadow color with transparency
+    cairo_set_source_rgba(cr, 0, 0, 0, config.globe_shadow)
     cairo_arc(cr, config.xc + 3, config.yc + 3, config.radius, 0, 2 * math.pi)
     cairo_fill(cr)
 
-    -- Determine the current rotation angle of the globe
     local rotation = get_rotation(config)
 
-    -- Draw the globe
     cairo_set_source_rgba(cr, 0, 0.5, 1, config.globe_alpha)
     cairo_arc(cr, config.xc, config.yc, config.radius, 0, 2 * math.pi)
     cairo_fill(cr)
 
-    -- Draw longitude and latitude lines
-    cairo_set_source_rgba(cr, 1, 1, 1, 0.2) -- White color with transparency
+    cairo_set_source_rgba(cr, 1, 1, 1, 0.2)
     cairo_set_line_width(cr, 1)
 
-    -- Draw longitude lines
     for lon = -180, 150, 30 do
-        local theta = (lon * math.pi / 180) + rotation -- Convert to radians
+        local theta = (lon * math.pi / 180) + rotation
         cairo_new_path(cr)
         for phi = -90, 85, 5 do
             local phi1 = phi * math.pi / 180
@@ -97,9 +92,8 @@ local function draw_single_globe(config)
         cairo_stroke(cr)
     end
 
-    -- Draw latitude lines
     for lat = -75, 75, 15 do
-        local phi = lat * math.pi / 180 -- Convert to radians
+        local phi = lat * math.pi / 180
         cairo_new_path(cr)
         for theta = 0, 2 * math.pi, 0.1 do
             local x1, y1, z1 = project(phi, theta + rotation, config)
@@ -112,8 +106,7 @@ local function draw_single_globe(config)
         cairo_stroke(cr)
     end
 
-    -- Add shading for a realistic appearance (optional)
-    local light_dir = { x = -1, y = 0, z = 0 } -- Light source direction
+    local light_dir = { x = -1, y = 0, z = 0 }
     local offset = 60
     local shading = cairo_pattern_create_radial(
         config.xc + config.radius * light_dir.x * 0.6 + offset,
@@ -133,18 +126,15 @@ local function draw_single_globe(config)
     cairo_restore(cr)
 end
 
-local function draw_cities(config)
+local function draw_cities(config, cr)
     cairo_save(cr)
-    -- Calculate rotation based on current time
     local rotation = get_rotation(config)
-    -- Iterate through each city to plot its pin and label
     for _, city in ipairs(config.cities) do
-        local phi = city.lat * math.pi / 180 -- Convert latitude to radians
-        local theta = (city.lon * math.pi / 180) + rotation -- Convert longitude to radians and add rotation
-        local x, y, z = project(phi, theta, config) -- Project 3D coordinates to 2D space
+        local phi = city.lat * math.pi / 180
+        local theta = (city.lon * math.pi / 180) + rotation
+        local x, y, z = project(phi, theta, config)
 
-        if z > 0 then -- Only draw cities on the visible side of the globe
-            -- Calculate pin origin on the globe
+        if z > 0 then
             local px = config.xc + config.radius * x
             local py = config.yc - config.radius * y
 
@@ -177,86 +167,86 @@ local function draw_cities(config)
             cairo_arc(cr, pin_x, pin_y, config.pin_radius, 0, 2 * math.pi)
             cairo_stroke(cr)
 
-            -- Prepare text for the label
+
+            local padding = 4
+            local flag_file = "/images/flags/" .. city.flag .. ".png"
+            local scale = 0.3 -- Scale factor, если draw_image принимает ширину/высоту
+
             cairo_select_font_face(cr, config.font_name, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL)
             cairo_set_font_size(cr, config.font_size)
             local extents = cairo_text_extents_t:create()
             cairo_text_extents(cr, city.name, extents)
+            tolua.takeownership(extents)
 
-            -- Load flag image
-            local padding = 4
-            local flag_file = "/images/flags/" .. city.flag .. ".png"
-            local flag_surface
-            local flag_width, flag_height = 0, 0
-            local scale = 0.3 -- Scale the flag to approximately 19px height
-
-            if flag_file then
-                local flag_path = root_path .. flag_file
+            local flag_surface = nil
+            local original_flag_width, original_flag_height = 0, 0
+            local scaled_flag_width, scaled_flag_height = 0, 0
+            local flag_path = root_path .. flag_file
+            if flag_path then
                 flag_surface = cairo_image_surface_create_from_png(flag_path)
-                if cairo_surface_status(flag_surface) == 0 then
-                    flag_width = cairo_image_surface_get_width(flag_surface) * scale
-                    flag_height = cairo_image_surface_get_height(flag_surface) * scale
+                if flag_surface and cairo_surface_status(flag_surface) == 0 then
+                    original_flag_width = cairo_image_surface_get_width(flag_surface)
+                    original_flag_height = cairo_image_surface_get_height(flag_surface)
+                    scaled_flag_width = original_flag_width * scale
+                    scaled_flag_height = original_flag_height * scale
                 else
                     flag_surface = nil
                 end
             end
 
-            -- Calculate positions for text and flag with label_offset
-            local total_height = math.max(extents.height, flag_height)
-            local label_offset = config.label_offset
-
-            local total_width = (flag_width > 0 and flag_width + 4 or 0) + extents.width + 2 * padding
-            local total_height = math.max(extents.height, flag_height)
+            local total_width = (scaled_flag_width > 0 and scaled_flag_width + 4 or 0) + extents.width + 2 * padding
+            local total_height = math.max(extents.height, scaled_flag_height) + 2 * padding
 
             local box_x = pin_x - (total_width / 2)
-            local box_y = pin_y - label_offset - (total_height / 2) - padding
+            local box_y = pin_y - (config.label_offset or 0) - (total_height / 2) - padding
             local box_w = total_width
-            local box_h = math.max(extents.height, flag_height) + 2 * padding
+            local box_h = total_height
 
-            -- Positie van vlag
-            local flag_x = box_x + padding
-            local flag_y = box_y + (box_h - flag_height) / 2
-
-            -- Positie van tekst
-            local label_x = flag_x + (flag_width > 0 and flag_width + 4 or 0)
-            local label_y = box_y + box_h / 2 + extents.height / 2
-
-            local box_w = (flag_width > 0 and flag_width + 4 or 0) + extents.width + 2 * padding
-            local box_h = math.max(extents.height, flag_height) + 2 * padding
-
-            -- Draw the label background with border
             draw_custom_rounded_rectangle(cr, box_x, box_y, box_w, box_h, {4, 4, 4, 4})
-
-            -- Fill the label background
             cairo_set_source_rgba(cr, hex_to_rgba(config.bg_color[1][2], config.bg_color[1][3]))
             cairo_fill_preserve(cr)
-
-            -- Draw the border (black, semi-transparent)
             cairo_set_source_rgba(cr, 0, 0, 0, 0.4)
             cairo_set_line_width(cr, 1)
             cairo_stroke(cr)
 
-            -- Draw the flag image (if available)
-            if flag_surface then
-                cairo_save(cr)
-                cairo_translate(cr, box_x + padding, box_y + (box_h - flag_height) / 2)
-                cairo_scale(cr, scale, scale)
-                cairo_set_source_surface(cr, flag_surface, 0, 0)
-                cairo_paint(cr)
-                cairo_restore(cr)
-                cairo_surface_destroy(flag_surface)
+            if flag_surface then -- Если флаг загружен
+                local flag_img_x = box_x + padding
+                local flag_img_y = box_y + (box_h - scaled_flag_height) / 2
+                draw_image(cr, flag_file, flag_img_x, flag_img_y, scaled_flag_width, scaled_flag_height, 0)
             end
 
-            -- Draw the city name text
-            cairo_set_source_rgba(cr, hex_to_rgba(config.label_color[1][2], config.label_color[1][3]))
-            cairo_move_to(cr, label_x, label_y)
-            cairo_show_text(cr, city.name)
+            local text_x = (scaled_flag_width > 0 and (box_x + padding + scaled_flag_width + 4) or (box_x + total_width / 2))
+            local text_y = box_y + box_h / 2 + extents.height / 2 -- Приблизительно baseline
+
+            local label_text_config = {
+                text = city.name,
+                x = text_x,
+                y = text_y,
+                h_align = "l",
+                v_align = "b",
+                color = config.label_color,
+                font_name = config.font_name,
+                font_size = config.font_size,
+                bold = false,
+                italic = false,
+                angle = 0,
+                skew_x = 0,
+                skew_y = 0,
+                radial = nil,
+                orientation = "ww",
+                reflection_alpha = 0,
+                reflection_length = 1,
+                reflection_scale = 1,
+                draw_me = true,
+            }
+            draw_single_text(label_text_config, cr)
+
         end
     end
-    cairo_restore(cr)
+     cairo_restore(cr)
 end
 
-local function draw_time(config)
+local function draw_time(config, cr)
     cairo_save(cr)
     local cnt = #config.cities
     -- max 6 lines with time!!!
@@ -278,25 +268,38 @@ local function draw_time(config)
         local flag_file = "/images/flags/" .. config.cities[i].flag .. ".png"
         draw_image(cr, flag_file, 203, 13 + 30 * i, 24, 18, 0)
 
-        -- Test label
+        -- Text label
         local lbl = config.cities[i].name .. ": " .. conky_parse("${tztime " .. config.cities[i].zone .. " %H:%M}")
 
-        cairo_select_font_face(cr, config.time_font_name, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL)
-        cairo_set_font_size(cr, config.time_font_size)
-        local extents = cairo_text_extents_t:create()
-        cairo_text_extents(cr, lbl, extents)
-
-        cairo_set_source_rgba(cr, hex_to_rgba(config.time_text_color[1][2], config.time_text_color[1][3]))
-        cairo_move_to(cr, 233, 29 + 30 * i)
-        cairo_show_text(cr, lbl)
+        local time_text_config = {
+            text = lbl,
+            x = 233,
+            y = 29 + 30 * i,
+            h_align = "l",
+            v_align = "b",
+            color = config.time_text_color,
+            font_name = config.time_font_name,
+            font_size = config.time_font_size,
+            bold = false,
+            italic = false,
+            angle = 0,
+            skew_x = 0,
+            skew_y = 0,
+            radial = nil,
+            orientation = "ww",
+            reflection_alpha = 0,
+            reflection_length = 1,
+            reflection_scale = 1,
+            draw_me = true,
+        }
+        draw_single_text(time_text_config, cr)
     end
     cairo_restore(cr)
 end
 
-function conky_globe_main(config)
-        -- Проверка структуры конфига
+function conky_globe_main(config, cr, widgets_module)
     if not config then
-        print("Ошибка: конфигурация не передана")
+        print("Error: config was not passed")
         return
     end
 
@@ -309,18 +312,11 @@ function conky_globe_main(config)
         return
     end
 
-    local cs = cairo_xlib_surface_create(conky_window.display, conky_window.drawable, conky_window.visual, conky_window.width, conky_window.height)
-    cr = cairo_create(cs)
-
     for i, v in pairs(config.globes) do
-        draw_single_globe(merge_tables(defaults_globe, v))
-        draw_cities(merge_tables(defaults_globe, v))
-        draw_time(merge_tables(defaults_globe, v))
+        draw_single_globe(merge_tables(defaults_globe, v), cr)
+        draw_cities(merge_tables(defaults_globe, v), cr)
+        draw_time(merge_tables(defaults_globe, v), cr)
     end
-
-    cairo_destroy(cr)
-    cairo_surface_destroy(cs)
-    cr = nil
 end
 
 return {

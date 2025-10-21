@@ -2,7 +2,7 @@
 -- conky widgets common
 -- by @rizado
 -- original code by @wim66, thanks
--- 5 August 2025    
+-- 21 October 2025    
 
 require("cairo")
 
@@ -34,11 +34,10 @@ local defaults_bars = {
     width = 30,                                      -- Width of each block
     space = 2,                                       -- Space between blocks
     angle = 0,
-    skew_x = 0,                                      -- Rotation angle of the bar (degrees)
     cap = "b",                                       -- Line cap: "b" (butt), "r" (round), "s" (square)
-    bg_colour = { 0x00FF00, 0.5 },                   -- Background color (green, half opacity)
-    fg_colour = { 0x00FF00, 1 },                     -- Foreground color (green, full opacity)
-    alarm_colour = nil,                              -- Alarm color (falls back to fg_colour)
+    bg_color = { 0x00FF00, 0.5 },                   -- Background color (green, half opacity)
+    fg_color = { 0x00FF00, 1 },                     -- Foreground color (green, full opacity)
+    alarm_color = nil,                              -- Alarm color (falls back to fg_color)
     smooth = false,                                  -- Enable gradient effect
     led_effect = nil,                                -- LED effect: "r", "a", "e" or nil
     radius = 0,                                      -- Radius for circular bars
@@ -76,7 +75,7 @@ function hex_to_rgba(hex, alpha)
 end
 
 -- Function to draw a bargraph with multiple blocks or a single bar
-function draw_multi_bar_graph(t)
+function draw_multi_bar_graph(t, cr)
     cairo_save(cr)
 
     -- Check if the bar should be drawn
@@ -121,33 +120,33 @@ function draw_multi_bar_graph(t)
     end
 
     -- Validate and set colors
-    if #t.bg_colour ~= 2 then
-        t.bg_colour = { 0x00FF00, 0.5 }
+    if #t.bg_color ~= 2 then
+        t.bg_color = { 0x00FF00, 0.5 }
     end
-    if #t.fg_colour ~= 2 then
-        t.fg_colour = { 0x00FF00, 1 }
+    if #t.fg_color ~= 2 then
+        t.fg_color = { 0x00FF00, 1 }
     end
-    if t.alarm_colour == nil then
-        t.alarm_colour = t.fg_colour
+    if t.alarm_color == nil then
+        t.alarm_color = t.fg_color
     end
-    if #t.alarm_colour ~= 2 then
-        t.alarm_colour = t.fg_colour
+    if #t.alarm_color ~= 2 then
+        t.alarm_color = t.fg_color
     end
 
-    if t.mid_colour ~= nil then
-        for i = 1, #t.mid_colour do
-            if #t.mid_colour[i] ~= 3 then
+    if t.mid_color ~= nil then
+        for i = 1, #t.mid_color do
+            if #t.mid_color[i] ~= 3 then
                 print("error in mid_color table")
-                t.mid_colour[i] = { 1, 0xFFFFFF, 1 }
+                t.mid_color[i] = { 1, 0xFFFFFF, 1 }
             end
         end
     end
 
     if t.bg_led ~= nil and #t.bg_led ~= 2 then
-        t.bg_led = t.bg_colour
+        t.bg_led = t.bg_color
     end
     if t.fg_led ~= nil and #t.fg_led ~= 2 then
-        t.fg_led = t.fg_colour
+        t.fg_led = t.fg_color
     end
     if t.alarm_led ~= nil and #t.alarm_led ~= 2 then
         t.alarm_led = t.fg_led
@@ -155,10 +154,10 @@ function draw_multi_bar_graph(t)
 
     if t.led_effect ~= nil then
         if t.bg_led == nil then
-            t.bg_led = t.bg_colour
+            t.bg_led = t.bg_color
         end
         if t.fg_led == nil then
-            t.fg_led = t.fg_colour
+            t.fg_led = t.fg_color
         end
         if t.alarm_led == nil then
             t.alarm_led = t.fg_led
@@ -176,11 +175,11 @@ function draw_multi_bar_graph(t)
     -- Create a linear gradient for smooth effect
     local function create_smooth_linear_gradient(x0, y0, x1, y1)
         local pat = cairo_pattern_create_linear(x0, y0, x1, y1)
-        cairo_pattern_add_color_stop_rgba(pat, 0, hex_to_rgba(t.fg_colour[1], t.fg_colour[2]))
-        cairo_pattern_add_color_stop_rgba(pat, 1, hex_to_rgba(t.alarm_colour[1], t.alarm_colour[2]))
-        if t.mid_colour ~= nil then
-            for i = 1, #t.mid_colour do
-                cairo_pattern_add_color_stop_rgba(pat, t.mid_colour[i][1], hex_to_rgba(t.mid_colour[i][2], t.mid_colour[i][3]))
+        cairo_pattern_add_color_stop_rgba(pat, 0, hex_to_rgba(t.fg_color[1], t.fg_color[2]))
+        cairo_pattern_add_color_stop_rgba(pat, 1, hex_to_rgba(t.alarm_color[1], t.alarm_color[2]))
+        if t.mid_color ~= nil then
+            for i = 1, #t.mid_color do
+                cairo_pattern_add_color_stop_rgba(pat, t.mid_color[i][1], hex_to_rgba(t.mid_color[i][2], t.mid_color[i][3]))
             end
         end
         return pat
@@ -189,11 +188,11 @@ function draw_multi_bar_graph(t)
     -- Create a radial gradient for smooth effect
     local function create_smooth_radial_gradient(x0, y0, r0, x1, y1, r1)
         local pat = cairo_pattern_create_radial(x0, y0, r0, x1, y1, r1)
-        cairo_pattern_add_color_stop_rgba(pat, 0, hex_to_rgba(t.fg_colour[1], t.fg_colour[2]))
-        cairo_pattern_add_color_stop_rgba(pat, 1, hex_to_rgba(t.alarm_colour[1], t.alarm_colour[2]))
-        if t.mid_colour ~= nil then
-            for i = 1, #t.mid_colour do
-                cairo_pattern_add_color_stop_rgba(pat, t.mid_colour[i][1], hex_to_rgba(t.mid_colour[i][2], t.mid_colour[i][3]))
+        cairo_pattern_add_color_stop_rgba(pat, 0, hex_to_rgba(t.fg_color[1], t.fg_color[2]))
+        cairo_pattern_add_color_stop_rgba(pat, 1, hex_to_rgba(t.alarm_color[1], t.alarm_color[2]))
+        if t.mid_color ~= nil then
+            for i = 1, #t.mid_color do
+                cairo_pattern_add_color_stop_rgba(pat, t.mid_color[i][1], hex_to_rgba(t.mid_color[i][2], t.mid_color[i][3]))
             end
         end
         return pat
@@ -238,7 +237,7 @@ function draw_multi_bar_graph(t)
                 end
             else
                 if bg then
-                    pat = cairo_pattern_create_rgba(hex_to_rgba(t.bg_colour[1], t.bg_colour[2]))
+                    pat = cairo_pattern_create_rgba(hex_to_rgba(t.bg_color[1], t.bg_color[2]))
                 else
                     pat = create_smooth_linear_gradient(t.width / 2, 0, t.width / 2, -t.height)
                 end
@@ -257,14 +256,14 @@ function draw_multi_bar_graph(t)
         end
 
         if t.angle_bar == 0 then
-            local pat = create_pattern(t.fg_colour, t.fg_led, false)
+            local pat = create_pattern(t.fg_color, t.fg_led, false)
             cairo_set_source(cr, pat)
             cairo_rectangle(cr, 0, 0, t.width, y1)
             cairo_fill(cr)
             cairo_pattern_destroy(pat)
 
             if not t.smooth and y2 ~= nil then
-                pat = create_pattern(t.alarm_colour, t.alarm_led, false)
+                pat = create_pattern(t.alarm_color, t.alarm_led, false)
                 cairo_set_source(cr, pat)
                 cairo_rectangle(cr, 0, y1, t.width, y2 - y1)
                 cairo_fill(cr)
@@ -274,7 +273,7 @@ function draw_multi_bar_graph(t)
                 y2, y3 = y1, y1
             end
             cairo_rectangle(cr, 0, y2, t.width, -t.height - y3)
-            pat = create_pattern(t.bg_colour, t.bg_led, true)
+            pat = create_pattern(t.bg_color, t.bg_led, true)
             cairo_set_source(cr, pat)
             cairo_pattern_destroy(pat)
             cairo_fill(cr)
@@ -287,15 +286,15 @@ function draw_multi_bar_graph(t)
             local y1 = -(pt - 1) * (t.height + t.space)
             local light_on = false
 
-            local col_alp = t.bg_colour
+            local col_alp = t.bg_color
             local col_led = t.bg_led
             if pct >= (100 / t.blocks) or pct > 0 then
                 if pct >= (pcb * (pt - 1)) then
                     light_on = true
-                    col_alp = t.fg_colour
+                    col_alp = t.fg_color
                     col_led = t.fg_led
                     if pct >= (100 * t.alarm / t.max) and (pcb * pt) > (100 * t.alarm / t.max) then
-                        col_alp = t.alarm_colour
+                        col_alp = t.alarm_color
                         col_led = t.alarm_led
                     end
                 end
@@ -315,17 +314,7 @@ function draw_multi_bar_graph(t)
                     end
                 else
                     if t.led_effect == "a" then
-                        pat = create_led_radial_gradient(
-                            0,
-                            0,
-                            t.radius + (t.height + t.space) * (pt - 1),
-                            0,
-                            0,
-                            t.radius + (t.height + t.space) * pt,
-                            col_alp,
-                            col_led,
-                            3
-                        )
+                        pat = create_led_radial_gradient(0, 0, t.radius + (t.height + t.space) * (pt - 1), 0, 0, t.radius + (t.height + t.space) * pt, col_alp, col_led, 3)
                     else
                         pat = cairo_pattern_create_rgba(hex_to_rgba(col_alp[1], col_alp[2]))
                     end
@@ -338,7 +327,7 @@ function draw_multi_bar_graph(t)
                         pat = create_smooth_radial_gradient(0, 0, (t.height + t.space), 0, 0, (t.blocks + 1) * (t.height + t.space), 2)
                     end
                 else
-                    pat = cairo_pattern_create_rgba(hex_to_rgba(t.bg_colour[1], t.bg_colour[2]))
+                    pat = cairo_pattern_create_rgba(hex_to_rgba(t.bg_color[1], t.bg_color[2]))
                 end
             end
             cairo_set_source(cr, pat)
@@ -401,17 +390,8 @@ function draw_multi_bar_graph(t)
             if t.angle_bar == 0 then
                 pts = { -delta / 2, (t.height + t.space) / 2, t.width + delta, -(t.height + t.space) * t.blocks }
                 if t.reflection == "t" then
-                    cairo_matrix_init(
-                        matrix1,
-                        1,
-                        0,
-                        0,
-                        -t.reflection_scale,
-                        0,
-                        -(t.height + t.space) * (t.blocks - 0.5) * 2 * (t.reflection_scale + 1) / 2
-                    )
-                    pat2 = cairo_pattern_create_linear(t.width / 2, -(t.height + t.space) * t.blocks, t.width / 2,
-                        (t.height + t.space) / 2)
+                    cairo_matrix_init(matrix1, 1, 0, 0, -t.reflection_scale, 0, -(t.height + t.space) * (t.blocks - 0.5) * 2 * (t.reflection_scale + 1) / 2)
+                    pat2 = cairo_pattern_create_linear(t.width / 2, -(t.height + t.space) * t.blocks, t.width / 2, (t.height + t.space) / 2)
                 elseif t.reflection == "r" then
                     cairo_matrix_init(matrix1, -t.reflection_scale, 0, 0, 1, delta + 2 * t.width, 0)
                     pat2 = cairo_pattern_create_linear(delta / 2 + t.width, 0, -delta / 2, 0)
@@ -451,7 +431,7 @@ function draw_multi_bar_graph(t)
     cairo_restore(cr)
 end
 
-function draw_single_text(t)
+function draw_single_text(t, cr)
     cairo_save(cr)
     if t.draw_me == true then
         t.draw_me = nil
@@ -461,8 +441,8 @@ function draw_single_text(t)
     end
     local function set_pattern(te)
         --this function set the pattern
-        if #t.colour == 1 then
-            cairo_set_source_rgba(cr, hex_to_rgba(t.colour[1][2], t.colour[1][3]))
+        if #t.color == 1 then
+            cairo_set_source_rgba(cr, hex_to_rgba(t.color[1][2], t.color[1][3]))
         else
             local pat
 
@@ -474,8 +454,8 @@ function draw_single_text(t)
                     t.radial[6])
             end
 
-            for i = 1, #t.colour do
-                cairo_pattern_add_color_stop_rgba(pat, t.colour[i][1], hex_to_rgba(t.colour[i][2], t.colour[i][3]))
+            for i = 1, #t.color do
+                cairo_pattern_add_color_stop_rgba(pat, t.color[i][1], hex_to_rgba(t.color[i][2], t.color[i][3]))
             end
             cairo_set_source(cr, pat)
             cairo_pattern_destroy(pat)
@@ -484,7 +464,7 @@ function draw_single_text(t)
 
     --set default values if needed
     if t.text == nil then
-        t.text = "Conky is good for you !"
+        t.text = "Conky is good for you!"
     end
     if t.x == nil then
         t.x = conky_window.width / 2
@@ -492,8 +472,8 @@ function draw_single_text(t)
     if t.y == nil then
         t.y = conky_window.height / 2
     end
-    if t.colour == nil then
-        t.colour = { { 1, 0xE7660B, 1 } }
+    if t.color == nil then
+        t.color = { { 1, 0xE7660B, 1 } }
     end
     if t.font_name == nil then
         t.font_name = 'Ubuntu'
@@ -545,7 +525,6 @@ function draw_single_text(t)
     end
     cairo_translate(cr, t.x, t.y)
     cairo_rotate(cr, t.angle * math.pi / 180)
---    cairo_save(cr)
 
     local slant = CAIRO_FONT_SLANT_NORMAL
     local weight = CAIRO_FONT_WEIGHT_NORMAL
@@ -561,10 +540,10 @@ function draw_single_text(t)
 
     cairo_select_font_face(cr, t.font_name, slant, weight)
 
-    for i = 1, #t.colour do
-        if #t.colour[i] ~= 3 then
+    for i = 1, #t.color do
+        if #t.color[i] ~= 3 then
             print("error in color table")
-            t.colour[i] = { 1, 0xFFFFFF, 1 }
+            t.color[i] = { 1, 0xFFFFFF, 1 }
         end
     end
 
@@ -585,7 +564,7 @@ function draw_single_text(t)
     if t.h_align == "c" then
         mx = -te.width / 2 - te.x_bearing
     elseif t.h_align == "r" then
-        mx = -te.width
+        mx = -te.width - te.x_bearing
     end
     if t.v_align == "m" then
         my = -te.height / 2 - te.y_bearing
@@ -627,7 +606,6 @@ function draw_single_text(t)
         cairo_rectangle(cr, mx + te.x_bearing, te.y_bearing + te.height + my, te.width + dy, -te.height * 1.05)
         cairo_clip_preserve(cr)
         cairo_set_operator(cr, CAIRO_OPERATOR_CLEAR)
-        --cairo_stroke(cr)
         cairo_mask(cr, pat2)
         cairo_pattern_destroy(pat2)
         cairo_set_operator(cr, CAIRO_OPERATOR_OVER)
@@ -671,11 +649,11 @@ function linear_orientation(t, te)
     return p
 end
 
-function draw_single_ring(t)
+function draw_single_ring(t, cr)
     cairo_save(cr)
 
     local function calc_delta(tcol1, tcol2)
-        --calculate deltas P R G B A to table_colour 1
+        --calculate deltas P R G B A to table_color 1
         for x = 1, #tcol1 do
             tcol1[x].dA = 0
             tcol1[x].dP = 0
@@ -699,8 +677,7 @@ function draw_single_ring(t)
     --check values
     local function setup(t)
         if t.name == nil and t.arg == nil then
-            print("No input values ... use parameters 'name'" +
-                " with 'arg' or only parameter 'arg' ")
+            print("No input values ... use parameters 'name'" + " with 'arg' or only parameter 'arg' ")
             return
         end
 
@@ -719,14 +696,14 @@ function draw_single_ring(t)
         if t.radius == nil then t.radius = conky_window.width / 4 end
         if t.start_angle == nil then t.start_angle = 0 end
         if t.end_angle == nil then t.end_angle = 360 end
-        if t.bg_colour1 == nil then
-            t.bg_colour1 = { { 0, 0x00ffff, 0.1 }, { 0.5, 0x00FFFF, 0.5 }, { 1, 0x00FFFF, 0.1 } }
+        if t.bg_color1 == nil then
+            t.bg_color1 = { { 0, 0x00ffff, 0.1 }, { 0.5, 0x00FFFF, 0.5 }, { 1, 0x00FFFF, 0.1 } }
         end
-        if t.fg_colour1 == nil then
-            t.fg_colour1 = { { 0, 0x00FF00, 0.1 }, { 0.5, 0x00FF00, 1 }, { 1, 0x00FF00, 0.1 } }
+        if t.fg_color1 == nil then
+            t.fg_color1 = { { 0, 0x00FF00, 0.1 }, { 0.5, 0x00FF00, 1 }, { 1, 0x00FF00, 0.1 } }
         end
-        if t.bd_colour1 == nil then
-            t.bd_colour1 = { { 0, 0xFFFF00, 0.5 }, { 0.5, 0xFFFF00, 1 }, { 1, 0xFFFF00, 0.5 } }
+        if t.bd_color1 == nil then
+            t.bd_color1 = { { 0, 0xFFFF00, 0.5 }, { 0.5, 0xFFFF00, 1 }, { 1, 0xFFFF00, 0.5 } }
         end
         if t.sectors == nil then t.sectors = 10 end
         if t.gap_sectors == nil then t.gap_sectors = 1 end
@@ -739,29 +716,29 @@ function draw_single_ring(t)
         t.int_radius = t.radius - t.thickness
 
         --check colors tables
-        for i = 1, #t.bg_colour1 do
-            if #t.bg_colour1[i] ~= 3 then t.bg_colour1[i] = { 1, 0xFFFFFF, 0.5 } end
+        for i = 1, #t.bg_color1 do
+            if #t.bg_color1[i] ~= 3 then t.bg_color1[i] = { 1, 0xFFFFFF, 0.5 } end
         end
-        for i = 1, #t.fg_colour1 do
-            if #t.fg_colour1[i] ~= 3 then t.fg_colour1[i] = { 1, 0xFF0000, 1 } end
+        for i = 1, #t.fg_color1 do
+            if #t.fg_color1[i] ~= 3 then t.fg_color1[i] = { 1, 0xFF0000, 1 } end
         end
-        for i = 1, #t.bd_colour1 do
-            if #t.bd_colour1[i] ~= 3 then t.bd_colour1[i] = { 1, 0xFFFF00, 1 } end
+        for i = 1, #t.bd_color1 do
+            if #t.bd_color1[i] ~= 3 then t.bd_color1[i] = { 1, 0xFFFF00, 1 } end
         end
 
-        if t.bg_colour2 ~= nil then
-            for i = 1, #t.bg_colour2 do
-                if #t.bg_colour2[i] ~= 3 then t.bg_colour2[i] = { 1, 0xFFFFFF, 0.5 } end
+        if t.bg_color2 ~= nil then
+            for i = 1, #t.bg_color2 do
+                if #t.bg_color2[i] ~= 3 then t.bg_color2[i] = { 1, 0xFFFFFF, 0.5 } end
             end
         end
-        if t.fg_colour2 ~= nil then
-            for i = 1, #t.fg_colour2 do
-                if #t.fg_colour2[i] ~= 3 then t.fg_colour2[i] = { 1, 0xFF0000, 1 } end
+        if t.fg_color2 ~= nil then
+            for i = 1, #t.fg_color2 do
+                if #t.fg_color2[i] ~= 3 then t.fg_color2[i] = { 1, 0xFF0000, 1 } end
             end
         end
-        if t.bd_colour2 ~= nil then
-            for i = 1, #t.bd_colour2 do
-                if #t.bd_colour2[i] ~= 3 then t.bd_colour2[i] = { 1, 0xFFFF00, 1 } end
+        if t.bd_color2 ~= nil then
+            for i = 1, #t.bd_color2 do
+                if #t.bd_color2[i] ~= 3 then t.bd_color2[i] = { 1, 0xFFFF00, 1 } end
             end
         end
 
@@ -769,15 +746,12 @@ function draw_single_ring(t)
             local tmp_angle = t.end_angle
             t.end_angle = t.start_angle
             t.start_angle = tmp_angle
-            -- print ("inversed angles")
             if t.end_angle - t.start_angle > 360 and t.start_angle > 0 then
                 t.end_angle = 360 + t.start_angle
-                print("reduce angles")
             end
 
             if t.end_angle + t.start_angle > 360 and t.start_angle <= 0 then
                 t.end_angle = 360 + t.start_angle
-                print("reduce angles")
             end
 
             if t.int_radius < 0 then t.int_radius = 0 end
@@ -785,22 +759,19 @@ function draw_single_ring(t)
                 local tmp_radius = t.radius
                 t.radius = t.int_radius
                 t.int_radius = tmp_radius
-                print("inversed radius")
             end
             if t.int_radius == t.radius then
                 t.int_radius = 0
-                print("int radius set to 0")
             end
         end
 
-        t.fg_colour1 = calc_delta(t.fg_colour1, t.fg_colour2)
-        t.bg_colour1 = calc_delta(t.bg_colour1, t.bg_colour2)
-        t.bd_colour1 = calc_delta(t.bd_colour1, t.bd_colour2)
+        t.fg_color1 = calc_delta(t.fg_color1, t.fg_color2)
+        t.bg_color1 = calc_delta(t.bg_color1, t.bg_color2)
+        t.bd_color1 = calc_delta(t.bd_color1, t.bd_color2)
     end
 
     if t.draw_me == true then t.draw_me = nil end
     if t.draw_me ~= nil and conky_parse(tostring(t.draw_me)) ~= "1" then return end
-    --initialize table
     setup(t)
 
     --initialize cairo context
@@ -808,7 +779,6 @@ function draw_single_ring(t)
     cairo_set_line_join(cr, CAIRO_LINE_JOIN_ROUND)
     cairo_set_line_cap(cr, CAIRO_LINE_CAP_ROUND)
 
-    --get value
     local value = 0
     if t.name ~= "" then
         value = tonumber(conky_parse(string.format('${%s %s}', t.name, t.arg)))
@@ -832,12 +802,12 @@ function draw_single_ring(t)
         local tcolor
         if type_arc == "bg" then --background
             if valpc == 1 then return end
-            tcolor = t.bg_colour1
+            tcolor = t.bg_color1
         elseif type_arc == "fg" then --foreground
             if valpc == 0 then return end
-            tcolor = t.fg_colour1
+            tcolor = t.fg_color1
         elseif type_arc == "bd" then --border
-            tcolor = t.bd_colour1
+            tcolor = t.bd_color1
         end
 
         --angles equivalents to gap_sector
@@ -848,7 +818,7 @@ function draw_single_ring(t)
         local ext_angle = (angle - ext_delta * 2) * valpc
         local int_angle = (angle - int_delta * 2) * valpc
 
-        --define colours to use for this sector
+        --define colors to use for this sector
         if #tcolor == 1 then
             --plain color
             local vR, vG, vB, vA = hex_to_rgba(tcolor[1][2], tcolor[1][3])
@@ -890,7 +860,7 @@ function draw_single_ring(t)
             if not (t.inverse_arc) and type_arc == "bg" then
                 angle_a = int_delta + int_angle
             end
-        else --t.cap=="r"
+        else
             angle_a = ext_delta
             if t.inverse_arc and type_arc ~= "bg" then
                 angle_a = angle - ext_angle - ext_delta
@@ -1101,13 +1071,11 @@ function draw_image(cr, image_path, x, y, w, h, rotation)
     cairo_surface_destroy(image_surface)
 end
 
-function draw_single_box(box)
+function draw_single_box(box, cr)
     if conky_window == nil then
         return
     end
 
-    local cs = cairo_xlib_surface_create(conky_window.display, conky_window.drawable, conky_window.visual, conky_window.width, conky_window.height)
-    local cr = cairo_create(cs)
     local canvas_width = conky_window.width
 
     if box.draw_me then
@@ -1118,8 +1086,8 @@ function draw_single_box(box)
 
         local cx, cy = x + w / 2, y + h / 2
         local angle = (box.rotation or 0) * math.pi / 180
-        local skew_x = (box.skew_x or 0) * math.pi / 180 -- Convert degrees to radians
-        local skew_y = (box.skew_y or 0) * math.pi / 180 -- Convert degrees to radians
+        local skew_x = (box.skew_x or 0) * math.pi / 180
+        local skew_y = (box.skew_y or 0) * math.pi / 180
 
         -- Save context and apply transformations
         cairo_save(cr)
@@ -1132,12 +1100,12 @@ function draw_single_box(box)
         cairo_translate(cr, -cx, -cy)
 
         if box.type == "background" then
-            cairo_set_source_rgba(cr, hex_to_rgba(box.colour[1][2], box.colour[1][3]))
+            cairo_set_source_rgba(cr, hex_to_rgba(box.color[1][2], box.color[1][3]))
             draw_custom_rounded_rectangle(cr, x, y, w, h, box.corners)
             cairo_fill(cr)
         elseif box.type == "layer2" then
             local grad = cairo_pattern_create_linear(unpack(box.linear_gradient))
-            for _, color in ipairs(box.colours) do
+            for _, color in ipairs(box.colors) do
                 cairo_pattern_add_color_stop_rgba(grad, color[1], hex_to_rgba(color[2], color[3]))
             end
             cairo_set_source(cr, grad)
@@ -1146,7 +1114,7 @@ function draw_single_box(box)
             cairo_pattern_destroy(grad)
         elseif box.type == "border" then
             local grad = cairo_pattern_create_linear(unpack(box.linear_gradient))
-            for _, color in ipairs(box.colour) do
+            for _, color in ipairs(box.color) do
                 cairo_pattern_add_color_stop_rgba(grad, color[1], hex_to_rgba(color[2], color[3]))
             end
             cairo_set_source(cr, grad)
@@ -1165,16 +1133,11 @@ function draw_single_box(box)
 
         cairo_restore(cr)
     end
-
-    cairo_destroy(cr)
-    cairo_surface_destroy(cs)
 end
 
--- Основная функция отрисовки (вызывается из Conky)
-function conky_main(config)
-        -- Проверка структуры конфига
+function conky_main(config, cr)
     if not config then
-        print("Ошибка: конфигурация не передана")
+        print("Error: config was not passed")
         return
     end
 
@@ -1190,28 +1153,20 @@ function conky_main(config)
         return
     end
 
-    local cs = cairo_xlib_surface_create(conky_window.display, conky_window.drawable, conky_window.visual, conky_window.width, conky_window.height)
-    cr = cairo_create(cs)
-
     for i, v in pairs(config.boxes) do
-        draw_single_box(merge_tables(defaults_boxes, v))
+        draw_single_box(merge_tables(defaults_boxes, v), cr)
     end
     for i, v in pairs(config.bars) do
-        draw_multi_bar_graph(merge_tables(defaults_bars, v))
+        draw_multi_bar_graph(merge_tables(defaults_bars, v), cr)
     end
     for i, v in pairs(config.rings) do
-        draw_single_ring(merge_tables(defaults_rings, v))
+        draw_single_ring(merge_tables(defaults_rings, v), cr)
     end
     for i, v in pairs(config.texts) do
-        draw_single_text(merge_tables(defaults_texts, v))
+        draw_single_text(merge_tables(defaults_texts, v), cr)
     end
-
-    cairo_destroy(cr)
-    cairo_surface_destroy(cs)
-    cr = nil
 end
 
--- Возвращаем таблицу функций для внешнего использования
 return {
     conky_main = conky_main,
 }

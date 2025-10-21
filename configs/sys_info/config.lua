@@ -16,7 +16,7 @@ config = {
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0x000000, 0.5 } },
+            color = { { 1, 0x000000, 0.5 } },
         },
         {
             type = "background",
@@ -29,7 +29,7 @@ config = {
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0xc0c000, 1 } },
+            color = { { 1, 0xc0c000, 1 } },
         },
         {
             type = "background",
@@ -42,7 +42,7 @@ config = {
             skew_x = 0,
             skew_y = 0,
             draw_me = true,
-            colour = { { 1, 0xc0c000, 1 } },
+            color = { { 1, 0xc0c000, 1 } },
         },
     },
     bars = {
@@ -59,7 +59,7 @@ config = {
             y = 15,
             h_align = "c",
             v_align = "t",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "${sysname}, kernel ${kernel} ${machine}",
@@ -69,7 +69,7 @@ config = {
             y = 65,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Uptime: ${uptime}",
@@ -79,7 +79,7 @@ config = {
             y = 90,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Frequency (in MHz): ${freq}",
@@ -89,7 +89,7 @@ config = {
             y = 130,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Frequency (in GHz): ${freq_g}",
@@ -99,7 +99,7 @@ config = {
             y = 155,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Network down / up: ${downspeed enp3s0} / ${upspeed enp3s0}",
@@ -109,7 +109,7 @@ config = {
             y = 195,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
         {
             text = "Total down / up: ${totaldown enp3s0} / ${totalup enp3s0}",
@@ -119,7 +119,7 @@ config = {
             y = 220,
             h_align = "l",
             v_align = "b",
-            colour = { { 1, 0xFFFFFF, 1 } },   
+            color = { { 1, 0xFFFFFF, 1 } },   
         },
     }
 }
