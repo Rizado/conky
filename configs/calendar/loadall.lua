@@ -18,4 +18,10 @@ conky_main = function()
     if config.calendar then
         calendar.conky_calendar_main(config, cr)
     end
+
+    cairo_restore(cr)
+
+    cairo_destroy(cr)
+    cairo_surface_destroy(cs)
+    cr = nil
 end
